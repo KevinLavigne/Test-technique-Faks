@@ -17,8 +17,8 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/claim/:id" element={<Claim />} />
-				<Route path="/page2" element={<NewClaim />} />
-				<Route path="/page3" element={<User />} />
+				<Route path="/claim" element={<NewClaim />} />
+				<Route path="/user" element={<User />} />
 			</Routes>
 		</BrowserRouter>
 	);
