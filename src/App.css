@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  background-color: #fff;
+  background-image: url("https://uploads-ssl.webflow.com/62baffdb2e8c87bb2a58b4f8/62baffdc2e8c870a9358b5d5_bg-blur-23-web3-webflow-ecommerce-template.png") ;
+  background-size: cover;
+  min-height: 100vh;
+}

@@ -40,7 +40,10 @@ function Claim() {
 				claim_id: id,
 				file: null,
 			})
-			.then(() => getMessage())
+			.then(() => {
+				getMessage();
+				setMessage('');
+			})
 			.catch((err) => {
 				console.warn(err);
 				toast.error(
@@ -58,7 +61,7 @@ function Claim() {
 				<h1 className="text-center text-4xl">claims info</h1>
 				<section className="flex justify-evenly w-full ">
 					<div className="flex flex-col items-center bg-slate-200 p-4 rounded-2xl">
-						<h2> pharmacy : {claim?.pharmacy.id}</h2>
+						<h2> pharmacy :</h2>
 						<p>{claim?.pharmacy.name}</p>
 						<p>{claim?.pharmacy.address_country}</p>
 						<p>{claim?.pharmacy.address_line_1}</p>
@@ -66,7 +69,7 @@ function Claim() {
 						<p>{claim?.pharmacy.cip}</p>
 					</div>
 					<div className="flex flex-col items-center bg-slate-200 p-4 rounded-2xl">
-						<h2> pharmacy : {claim?.lab.id}</h2>
+						<h2> pharmacy :</h2>
 						<p>{claim?.lab.name}</p>
 						<img src={claim?.lab.logo_url} className="w-[5rem] aspect-square" />
 					</div>
@@ -76,7 +79,6 @@ function Claim() {
 					{messages &&
 						messages.messages.map((message) => (
 							<div key={message.id} className="bg-slate-200 p-2 rounded-2xl">
-								<p>{message.id}</p>
 								<p>problem : {message.content}</p>
 								<p>
 									by : {message.user.first_name} {message.user.last_name}
