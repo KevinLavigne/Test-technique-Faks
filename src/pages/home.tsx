@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import apiConnexion from '../services/apiConnexion';
-import { claim, meta } from '../interface';
+import { labs, claim, meta } from '../interface';
 import { Link } from 'react-router-dom';
 
 interface claims {
@@ -12,8 +12,11 @@ interface claims {
 function Home() {
 	const [claims, setClaims] = useState<claims | null>(null);
 	const [page, setPage] = useState<number>(1);
+	const [labs, setLabs] = useState<labs | null>(null);
+	const [labId, setLabId] = useState<number | null>(null);
 
 	const body = () => {
+		if (labId !== null) return { q: { lab_id_eq: labId, pharmacy_id_eq: 1 } };
 		return { q: { pharmacy_id_eq: 1 } };
 	};
 
@@ -21,11 +24,27 @@ function Home() {
 		apiConnexion
 			.get(`/claims?page=${page}`, { params: body() })
 			.then((res) => setClaims(res.data));
-	}, [page]);
+	}, [page, labId]);
+
+	useEffect(() => {
+		apiConnexion.get('/labs').then((res) => setLabs(res.data));
+	}, []);
 
 	return (
 		<div className="flex flex-col items-center justify-center gap-2 ">
 			<h1 className="text-5xl font-semibold text-center">welcome on home</h1>
+			<div className="flex gap-2 items-center">
+				<select
+					onChange={(e) => setLabId(parseInt(e.target.value, 10) || null)}
+				>
+					<option>select a lab for filter</option>
+					{labs?.labs.map((lab) => (
+						<option key={lab.id} value={lab.id}>
+							{lab.name}
+						</option>
+					))}
+				</select>
+			</div>
 			<section className="w-5/6 flex flex-wrap justify-evenly bg-slate-300 bg-opacity-40 p-8 rounded-2xl mb-10">
 				{claims &&
 					claims?.claims.map((claim) => (
