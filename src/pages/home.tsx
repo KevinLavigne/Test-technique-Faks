@@ -13,9 +13,6 @@ function Home() {
 	const [claims, setClaims] = useState<claims | null>(null);
 	const [page, setPage] = useState<number>(1);
 
-	const body = () => {
-		return { q: { pharmacy_id_eq: 1 } };
-	};
 	useEffect(() => {
 		apiConnexion.get(`/claims?page=${page}`).then((res) => setClaims(res.data));
 	}, [page]);
