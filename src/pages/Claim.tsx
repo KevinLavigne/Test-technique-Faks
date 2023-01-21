@@ -74,11 +74,14 @@ function Claim() {
 						<img src={claim?.lab.logo_url} className="w-[5rem] aspect-square" />
 					</div>
 				</section>
-				<section className="flex flex-col justify-center items-center bg-slate-300 w-2/5 p-4 rounded-2xl gap-2">
+				<section className="flex flex-col justify-center items-center bg-slate-300 w-4/5 md:w-2/5 p-4 rounded-2xl gap-2">
 					<h1 className="text-center text-4xl"> messages :</h1>
 					{messages &&
 						messages.messages.map((message) => (
-							<div key={message.id} className="bg-slate-200 p-2 rounded-2xl">
+							<div
+								key={message.id}
+								className="bg-slate-200 p-2 rounded-2xl w-5/6"
+							>
 								<p>problem : {message.content}</p>
 								<p>
 									by : {message.user.first_name} {message.user.last_name}

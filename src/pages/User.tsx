@@ -5,8 +5,10 @@ function Page2() {
 	const context = useContext(ExportContext.Profil) as context;
 	return (
 		<div className="h-[95vh]">
-			<h1 className="text-5xl font-semibold text-center">user information</h1>
-			<section className="flex justify-evenly h-[90%] items-center">
+			<h1 className="text-4xl md:text-5xl font-semibold text-center">
+				user information
+			</h1>
+			<section className="flex flex-col md:flex-row justify-evenly h-[90%] items-center">
 				<article className="flex flex-col bg-slate-200 bg-opacity-80 p-4 rounded-2xl">
 					<h2>User:</h2>
 					<p>Firstname : {context.user?.first_name}</p>

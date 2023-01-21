@@ -55,13 +55,13 @@ function NewClaim() {
 			<Toaster />
 			<h1 className="text-4xl">Create claim</h1>
 			<form
-				className=" flex flex-col gap-2 w-2/5 bg-slate-300 p-4 rounded-2xl"
+				className=" flex flex-col gap-2 w-3/4 md:w-2/5 bg-slate-300 p-4 rounded-2xl"
 				onSubmit={(e) => sendNewClaim(e)}
 			>
 				<label className="flex flex-col items-center">
 					laboratory :
 					<select
-						className="w-1/4 text-center"
+						className=" md:w-1/4 text-center"
 						onChange={(e) => setLabId(parseInt(e.target.value, 10))}
 						value={labId}
 					>

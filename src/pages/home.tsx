@@ -36,7 +36,9 @@ function Home() {
 
 	return (
 		<div className="flex flex-col items-center justify-center gap-2 ">
-			<h1 className="text-5xl font-semibold text-center">welcome on home</h1>
+			<h1 className="text-4xl md:text-5xl font-semibold text-center">
+				welcome on home
+			</h1>
 			<div className="flex gap-2 items-center">
 				<select
 					onChange={(e) => setLabId(parseInt(e.target.value, 10) || null)}
@@ -54,7 +56,7 @@ function Home() {
 					claims?.claims.map((claim) => (
 						<article
 							key={claim.id}
-							className="w-1/5 flex flex-col gap-2 items-center m-2 p-2 bg-slate-400 rounded-2xl"
+							className="md:w-1/5 flex flex-col gap-2 items-center m-2 p-2 bg-slate-400 rounded-2xl"
 						>
 							<h1>claim id: {claim.id} </h1>
 							<section>
@@ -69,7 +71,7 @@ function Home() {
 							</section>
 							<Link
 								to={`claim/${claim.id}`}
-								className="bg-slate-200 p-1 w-1/4 self-center text-center rounded-2xl"
+								className="bg-slate-200 p-1 md:w-1/4 self-center text-center rounded-2xl"
 							>
 								Details
 							</Link>
