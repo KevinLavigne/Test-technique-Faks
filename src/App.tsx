@@ -1,10 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import Home from './pages/Home';
 import Claim from './pages/Claim';
 import NewClaim from './pages/NewClaim';
 import User from './pages/User';
 import NavBar from './components/navbar';
+
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
 function App() {

@@ -23,11 +23,15 @@ function Home() {
 	useEffect(() => {
 		apiConnexion
 			.get(`/claims?page=${page}`, { params: body() })
-			.then((res) => setClaims(res.data));
+			.then((res) => setClaims(res.data))
+			.catch((err) => console.warn(err));
 	}, [page, labId]);
 
 	useEffect(() => {
-		apiConnexion.get('/labs').then((res) => setLabs(res.data));
+		apiConnexion
+			.get('/labs')
+			.then((res) => setLabs(res.data))
+			.catch((err) => console.warn(err));
 	}, []);
 
 	return (
