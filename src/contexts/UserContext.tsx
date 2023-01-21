@@ -1,42 +1,38 @@
-import React, { createContext, useState } from 'react';
-
-interface state1 {
- props1: string;
- props2: number;
-}
-
-interface state2 {
-  props1: string;
-  props2: number;
-}
+import React, { createContext, useEffect, useState } from 'react';
+import apiConnexion from '../services/apiConnexion';
+import { pharmacy, user } from '../interface';
 
 export interface context {
-  state1: state1;
-  state2: state2;
+	user: user;
+	pharmacy: pharmacy;
 }
 
-interface children{
-  children: JSX.Element
+interface children {
+	children: JSX.Element;
 }
 
-const Context1 = createContext({});
+const Profil = createContext({});
 function Provider({ children }: children) {
-const [state1, setState1] = useState<state1>({props1: "test", props2: 2})
+	const [user, setUser] = useState<user | null>(null);
 
-const [state2, setState2] = useState<state2>({props1: "test", props2: 2})
+	const [pharmacy, setPharmacy] = useState<pharmacy | null>(null);
 
-return (
-  <Context1.Provider
-    value={{state1,setState1,state2,setState2}}
-  >
-    {children}
-  </Context1.Provider>
-);
+	useEffect(() => {
+		apiConnexion.get('/pharmacies/1').then((res) => {
+			const newData = { ...res.data };
+			delete newData.user;
+			setUser(res.data.user);
+			setPharmacy(newData);
+		});
+	}, []);
 
+	return (
+		<Profil.Provider value={{ user, pharmacy }}>{children}</Profil.Provider>
+	);
 }
 const ExportContext = {
-  Context1,
-  Provider
-}
+	Profil,
+	Provider,
+};
 
 export default ExportContext;
